@@ -1,0 +1,16 @@
+{
+    "credentials": [
+    {
+        "appName" : "App1",
+        "qNumber" : "Q1234",
+        "secretId" : "Id1",
+        "secretPw": "1234"
+    },
+    {
+        "appName" : "App2",
+        "qNumber" : "Q5678",
+        "secretId" : "Id2",
+        "secretPw": "5678"
+    }
+    ]
+}
