@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/CredentialManager" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/LoginConfigurator" vcs="Git" />
   </component>
 </project>
