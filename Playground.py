@@ -1,24 +1,20 @@
-import json
+import PySimpleGUI as sg
 
+icon_path = "C://01_FG-790//CredentialManager//icon.png"
 
-with open("Credentials.json", "r") as f:
-    data_old = json.load(f)
+# Fenster-Layout definieren
+layout = [
+    [sg.Text("Add user credentials to Config-File:", font="Arial 20")]
+]
 
-with open("new.json", "r") as f:
-    data_new = json.load(f)
+# Fenster erstellen
+window = sg.Window("Credential Manager", layout, icon=icon_path, size=(500, 200))
 
-data = {
-    "credentials": data_old["credentials"] + data_new["credentials"]
-}
+# Ereignis-Schleife
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == "Close":
+        break
 
-with open("Credentials.json", "w") as f:
-    json.dump(data, f, indent=4)
-
-
-print("Data old:")
-print(data_old)
-print("Data new:")
-print(data_new)
-print("\n")
-print("Data current:")
-print(data)
+# Fenster schließen
+window.close()

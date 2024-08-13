@@ -2,13 +2,15 @@ import json
 import PySimpleGUI as sg
 import tkinter as tk
 
+icon_path = "icon.png"
+
 # Add your new theme colors and settings
 my_new_theme = {'BACKGROUND': '#F2F2F2',
                 'TEXT': '#012C38',
                 'INPUT': 'lightgrey',
                 'TEXT_INPUT': '#000000',
                 'SCROLL': '#9EABC4',
-                'BUTTON': ('white', '#596D93'),
+                'BUTTON': ('white', '#5F769C'),
                 'PROGRESS': ('#01826B', '#D0D0D0'),
                 'BORDER': 1,
                 'SLIDER_DEPTH': 0,
@@ -28,8 +30,8 @@ layout = [
     [sg.Text("ID:              ", font="Arial 14"), sg.InputText(key="-secret_id-", font="Arial 14", text_color="#548D9E", password_char="*", size=30, pad=(10,0)), sg.Button("x", key="-delID-", button_color="#7F7F7F", mouseover_colors="#CD738C", border_width=2, pad=(0,0))],
     [sg.Text("Password: ", font="Arial 14"), sg.InputText(key="-secret_pw-", font="Arial 14", text_color="#548D9E", password_char="*", size=30, pad=(10,0)), sg.Button("x", key="-delPW-", button_color="#7F7F7F", mouseover_colors="#CD738C", border_width=2, pad=(1,0))],
     [sg.Button("show passwords", key="-checkpw-", pad=((118,0),(0,0)), font="Arial 8", button_color="#7F7F7F"), sg.Button("clear all", key="-clearAll-", font="Arial 8", button_color="#7F7F7F", mouseover_colors="#CD738C",pad=((224,0),(0,0)))],
-    [sg.Button("Add", key="-add-", font="Arial 14", button_color="#5F769C", mouseover_colors="#18C9F9")],
-    [sg.Text("Content Credentials.json:", font="Arial 12")],
+    [sg.Button("Add", key="-add-", font="Arial 14", mouseover_colors="#18C9F9")],
+    [sg.Text("Content Credentials.json:", font="Arial 12"), sg.Button("Delete entry:", key="-delEntryButton-", font="Arial 8", button_color="#AC1640", mouseover_colors="#d70000"), sg.InputText(key="-delEntry-", text_color="#548D9E", size=29)],
     [sg.Multiline("<empty>",  key="-jsonText-", size=(65, 50), background_color="#BFBFBF", text_color="#012C38")],
 ]
 
@@ -40,9 +42,9 @@ secret_id = ""
 secret_pw = ""
 
 # Fenster erstellen
-window = sg.Window("Login", layout, size=(520, 700))
+window = sg.Window("Credential Manager", layout, icon=icon_path, size=(520, 700))
 
-def after_startup():
+def updateText():
     with open("Credentials.json", "r") as f:
         data_old = json.load(f)
     data = {
@@ -59,7 +61,7 @@ def after_startup():
 # Ereignis-Schleife
 while True:
     window.finalize()
-    after_startup()
+    updateText()
     event, values = window.read()
     if event == sg.WIN_CLOSED or event == "Close":
         break
@@ -129,6 +131,27 @@ while True:
         window["-qNumber-"].update("")
         window["-secret_id-"].update("")
         window["-secret_pw-"].update("")
+
+    if event == "-delEntryButton-":
+        found = False
+        target = values["-delEntry-"]
+        # Öffne die JSON-Datei und lies den Inhalt ein
+        with open('Credentials.json', 'r') as file:
+            data = json.load(file)
+        # Finde den Index des Elements mit appName "App2"
+        for i, credential in enumerate(data["credentials"]):
+            if credential["appName"] == target:
+                if target == values["-delEntry-"]:
+                    found = True
+                break
+        # Entferne den gewünschten Eintrag
+        if found == True:
+            del data['credentials'][i]
+        # Schreibe das aktualisierte Objekt zurück in die JSON-Datei
+        with open('Credentials.json', 'w') as file:
+            json.dump(data, file, indent=4)
+        updateText()
+        window["-delEntry-"].update("")
 
 # Fenster schließen
 window.close()

@@ -1,10 +1,10 @@
 {
     "credentials": [
         {
-            "appName": "wef",
-            "qNumber": "wef",
-            "secretId": "weggegw",
-            "secretPw": "wef"
+            "appName": "",
+            "qNumber": "",
+            "secretId": "",
+            "secretPw": ""
         }
     ]
 }

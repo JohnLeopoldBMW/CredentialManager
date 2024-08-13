@@ -2,15 +2,21 @@
     "credentials": [
     {
         "appName" : "App1",
-        "qNumber" : "Q1234",
+        "qNumber" : "q1111",
         "secretId" : "Id1",
-        "secretPw": "1234"
+        "secretPw": "2222"
     },
     {
         "appName" : "App2",
-        "qNumber" : "Q5678",
+        "qNumber" : "q2222",
         "secretId" : "Id2",
-        "secretPw": "5678"
+        "secretPw": "2222"
+    },
+        {
+        "appName" : "App3",
+        "qNumber" : "q3333",
+        "secretId" : "Id3",
+        "secretPw": "3333"
     }
     ]
 }
