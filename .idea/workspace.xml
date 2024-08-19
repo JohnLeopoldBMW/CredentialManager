@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3da95712-8156-48bf-84c1-474be7d3ff42" name="Changes" comment="Final clean up before presentation">
-      <change afterPath="$PROJECT_DIR$/Playground.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Credentials.json" beforeDir="false" afterPath="$PROJECT_DIR$/Credentials.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoginConfigurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoginConfigurator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
