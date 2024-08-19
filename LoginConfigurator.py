@@ -1,4 +1,5 @@
 import json
+from collections import OrderedDict
 
 import PySimpleGUI as sg
 
@@ -51,6 +52,33 @@ def updateText():
         credentials = json.load(f)
     window["-jsonText-"].update(json.dumps(credentials, indent=4))
 
+def updateDeleteDropdown():
+    # JSON-Datei laden
+    with open('Credentials.json', 'r') as file:
+        data = json.load(file)
+    # Einträge in gewünschtem Format speichern
+    entries = [key for key in data.keys()]
+    window["-delAppName-"].update(values=entries, size=(25,100))
+
+def sortJSONFile():
+    # JSON-Datei laden
+    with open('Credentials.json', 'r') as file:
+        data = json.load(file, object_pairs_hook=OrderedDict)
+    # Gewünschte Reihenfolge der Einträge
+    desired_order = ['ivsr_client', 'cce', 'vds']
+    # Einträge in gewünschter Reihenfolge sortieren
+    sorted_data = OrderedDict()
+    for key in desired_order:
+        if key in data:
+            sorted_data[key] = data[key]
+    # Verbleibende Einträge am Ende anfügen
+    for key in data:
+        if key not in desired_order:
+            sorted_data[key] = data[key]
+    # Aktualisierte JSON-Datei speichern
+    with open('Credentials.json', 'w') as file:
+        json.dump(sorted_data, file, indent=4)
+
 def clearConfigWindow():
     window["-input1-"].update("")
     window["-headingInput1-"].update(visible=False)
@@ -69,7 +97,9 @@ def clearConfigWindow():
 # Ereignis-Schleife
 while True:
     window.finalize()
+    sortJSONFile()
     updateText()
+    updateDeleteDropdown()
     event, values = window.read()
     if event == sg.WIN_CLOSED or event == "Close":
         break
@@ -103,6 +133,7 @@ while True:
             with open("Credentials.json", "w") as f:
                 json.dump(credentials, f, indent=4)
 
+        sortJSONFile()
         clearConfigWindow()
 
     if event == "-checkpw-":
