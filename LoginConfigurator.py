@@ -1,8 +1,6 @@
 import json
-import PySimpleGUI as sg
-import tkinter as tk
 
-icon_path = "icon.png"
+import PySimpleGUI as sg
 
 # Add your new theme colors and settings
 my_new_theme = {'BACKGROUND': '#F2F2F2',
@@ -22,41 +20,51 @@ sg.theme_add_new('MyNewTheme', my_new_theme)
 # Switch your theme to use the newly added one. You can add spaces to make it more readable
 sg.theme('My New Theme')
 
+# Bild-Datei in Bytes konvertieren
+with open("eye.png", "rb") as f:
+    image_data = f.read()
+
 # Fenster-Layout definieren
 layout = [
     [sg.Text("Add user credentials to Config-File:", font="Arial 20")],
-    [sg.Text("App Name: ", font="Arial 14"), sg.InputText(key="-appName-", font="Arial 14", text_color="#548D9E", size=30), sg.Button("x", key="-delName-", button_color="#7F7F7F", mouseover_colors="#CD738C", border_width=2, pad=((5,0)))],
-    [sg.Text("Q-Number :", font="Arial 14"), sg.InputText(key="-qNumber-", font="Arial 14", text_color="#548D9E", size=30, pad=(7,0)), sg.Button("x", key="-delQNumber-", button_color="#7F7F7F", mouseover_colors="#CD738C", border_width=2, pad=(3,0))],
-    [sg.Text("ID:              ", font="Arial 14"), sg.InputText(key="-secret_id-", font="Arial 14", text_color="#548D9E", password_char="*", size=30, pad=(10,0)), sg.Button("x", key="-delID-", button_color="#7F7F7F", mouseover_colors="#CD738C", border_width=2, pad=(0,0))],
-    [sg.Text("Password: ", font="Arial 14"), sg.InputText(key="-secret_pw-", font="Arial 14", text_color="#548D9E", password_char="*", size=30, pad=(10,0)), sg.Button("x", key="-delPW-", button_color="#7F7F7F", mouseover_colors="#CD738C", border_width=2, pad=(1,0))],
-    [sg.Button("show passwords", key="-checkpw-", pad=((118,0),(0,0)), font="Arial 8", button_color="#7F7F7F"), sg.Button("clear all", key="-clearAll-", font="Arial 8", button_color="#7F7F7F", mouseover_colors="#CD738C",pad=((224,0),(0,0)))],
-    [sg.Button("Add", key="-add-", font="Arial 14", mouseover_colors="#18C9F9")],
-    [sg.Text("Content Credentials.json:", font="Arial 12"), sg.Button("Delete entry:", key="-delEntryButton-", font="Arial 8", button_color="#AC1640", mouseover_colors="#d70000"), sg.InputText(key="-delEntry-", text_color="#548D9E", size=29)],
-    [sg.Multiline("<empty>",  key="-jsonText-", size=(65, 50), background_color="#BFBFBF", text_color="#012C38")],
+
+    [sg.Text("Content Credentials.json:", font="Arial 12"), sg.Button("Delete entry:", key="-delEntryButton-", font="Arial 8", button_color="#AC1640", mouseover_colors="#d70000", pad=((95,0),(0,0))), sg.DropDown(("ivsr_client", "cce", "vds", "testApp"), key="-delAppName-", size=25)],
+    [sg.Multiline("<empty>",  key="-jsonText-", size=(75, 20), background_color="#BFBFBF", text_color="#012C38")],
+
+    [sg.Text("Select Application:", font="Arial 14"), sg.DropDown(("ivsr_client", "cce", "vds"), key="-appName-", size=25, pad=((30,0),(0,0))), sg.Button("Configurate", key="-config-", font="Arial 13", mouseover_colors="#18C9F9", pad=((8,0),(0,0))), sg.Button("Add", key="-add-", font="Arial 13", mouseover_colors="#18C9F9", pad=((10,0),(0,0)))],
+
+
+    [sg.Text("", font="Arial 14", key="-headingInput1-", visible=False), sg.InputText(key="-input1-", font="Arial 14", text_color="#548D9E", size=27, pad=(10,0), visible=False)],
+    [sg.Text("", font="Arial 14", key="-headingInput2-", visible=False), sg.InputText(key="-input2-", font="Arial 14", text_color="#548D9E", size=27, pad=(10,0), visible=False), sg.Button(image_filename="eye.png", image_data=image_data, image_size=(30,20), key="-checkpw-", pad=((0,0),(0,0)), border_width=2, font="Arial 8", button_color="#7F7F7F", visible=False)],
+    [sg.Text("", font="Arial 14", key="-headingInput3-", visible=False), sg.InputText(key="-input3-", font="Arial 14", text_color="#548D9E", size=27, pad=(10,0), visible=False)],
+    [sg.Text("", font="Arial 14", key="-headingInput4-", visible=False), sg.InputText(key="-input4-", font="Arial 14", text_color="#548D9E", size=27, pad=(10,0), visible=False)]
 ]
 
 pwShow = False
-appName = ""
-qNumber = ""
-secret_id = ""
-secret_pw = ""
 
 # Fenster erstellen
-window = sg.Window("Credential Manager", layout, icon=icon_path, size=(520, 700))
+window = sg.Window("Credential Manager", layout, icon="icon.ico", size=(620, 550))
 
 def updateText():
+    # Lesen der JSON-Datei in ein Dictionary
     with open("Credentials.json", "r") as f:
-        data_old = json.load(f)
-    data = {
-        "credentials": data_old["credentials"]
-    }
-    try:
-        with open("Credentials.json", "r") as f:
-            data_old = json.dumps(data, indent=4)
-            window["-jsonText-"].update(data_old)
-    except (FileNotFoundError, json.JSONDecodeError):
-        window["-jsonText-"].update("JSON file not found!")
+        credentials = json.load(f)
+    window["-jsonText-"].update(json.dumps(credentials, indent=4))
 
+def clearConfigWindow():
+    window["-input1-"].update("")
+    window["-headingInput1-"].update(visible=False)
+    window["-input1-"].update(visible=False)
+    window["-input2-"].update("")
+    window["-headingInput2-"].update(visible=False)
+    window["-input2-"].update(visible=False)
+    window["-input3-"].update("")
+    window["-headingInput3-"].update(visible=False)
+    window["-input3-"].update(visible=False)
+    window["-input4-"].update("")
+    window["-headingInput4-"].update(visible=False)
+    window["-input4-"].update(visible=False)
+    window["-checkpw-"].update(visible=False)
 
 # Ereignis-Schleife
 while True:
@@ -66,92 +74,83 @@ while True:
     if event == sg.WIN_CLOSED or event == "Close":
         break
     if event == "-add-":
-        appName = values["-appName-"]
-        qNumber = values["-qNumber-"]
-        secret_id = values["-secret_id-"]
-        secret_pw = values["-secret_pw-"]
-
-        # Variablen in ein Dictionary packen
-        data = {
-            "credentials": [
-                {
-                    "appName": appName,
-                    "qNumber": qNumber,
-                    "secretId": secret_id,
-                    "secretPw": secret_pw
-                }
-            ]
-        }
-
-        try:
-            with open("new.json", "w") as f:
-                json.dump(data, f, indent=4)
+        if values["-appName-"] == "":
+            sg.popup("Bitte wählen Sie eine Applikation aus \nund konfigurieren Sie diese!", title="Hint", icon="hint.ico")
+        if values["-appName-"] in ["ivsr_client"]:
+            client_id = values["-input1-"]
+            client_secret = values["-input2-"]
+            # Lesen der Zugangsdaten aus der Credentials.json Datei
             with open("Credentials.json", "r") as f:
-                data_old = json.load(f)
-            with open("new.json", "r") as f:
-                data_new = json.load(f)
-            data = {
-                "credentials": data_old["credentials"] + data_new["credentials"]
+                credentials = json.load(f)
+            credentials[values["-appName-"]] = {
+                "client_id": client_id,
+                "client_secret": client_secret,
             }
+            # Schreiben der aktualisierten Credentials in die Datei
             with open("Credentials.json", "w") as f:
-                json.dump(data, f, indent=4)
+                json.dump(credentials, f, indent=4)
+        if values["-appName-"] in ["cce", "vds"]:
+            username = values["-input1-"]
+            password = values["-input2-"]
+            # Lesen der Zugangsdaten aus der Credentials.json Datei
             with open("Credentials.json", "r") as f:
-                data_old = json.dumps(data, indent=4)
-                window["-jsonText-"].update(data_old)
-        except (FileNotFoundError, json.JSONDecodeError):
-            data_old = []
+                credentials = json.load(f)
+            credentials[values["-appName-"]] = {
+                "username": username,
+                "password": password
+            }
+            # Schreiben der aktualisierten Credentials in die Datei
+            with open("Credentials.json", "w") as f:
+                json.dump(credentials, f, indent=4)
 
-        window["-appName-"].update("")
-        window["-qNumber-"].update("")
-        window["-secret_id-"].update("")
-        window["-secret_pw-"].update("")
+        clearConfigWindow()
 
     if event == "-checkpw-":
         if pwShow == False:
             window["-checkpw-"].update(button_color=("black", "#B2EDFD"))
-            window["-secret_id-"].update(password_char="")
-            window["-secret_pw-"].update(password_char="")
+            window["-input2-"].update(password_char="")
             pwShow = True
         elif pwShow == True:
             window["-checkpw-"].update(button_color=("white", "#7F7F7F"))
-            window["-secret_id-"].update(password_char="*")
-            window["-secret_pw-"].update(password_char="*")
+            window["-input2-"].update(password_char="*")
             pwShow = False
 
-    if event == "-delName-":
-        window["-appName-"].update("")
-    if event == "-delQNumber-":
-        window["-qNumber-"].update("")
-    if event == "-delID-":
-        window["-secret_id-"].update("")
-    if event == "-delPW-":
-        window["-secret_pw-"].update("")
-    if event == "-clearAll-":
-        window["-appName-"].update("")
-        window["-qNumber-"].update("")
-        window["-secret_id-"].update("")
-        window["-secret_pw-"].update("")
-
     if event == "-delEntryButton-":
-        found = False
-        target = values["-delEntry-"]
-        # Öffne die JSON-Datei und lies den Inhalt ein
-        with open('Credentials.json', 'r') as file:
-            data = json.load(file)
-        # Finde den Index des Elements mit appName "App2"
-        for i, credential in enumerate(data["credentials"]):
-            if credential["appName"] == target:
-                if target == values["-delEntry-"]:
-                    found = True
-                break
-        # Entferne den gewünschten Eintrag
-        if found == True:
-            del data['credentials'][i]
-        # Schreibe das aktualisierte Objekt zurück in die JSON-Datei
-        with open('Credentials.json', 'w') as file:
-            json.dump(data, file, indent=4)
-        updateText()
-        window["-delEntry-"].update("")
+        try:
+            # Lesen der JSON-Datei in ein Dictionary
+            with open("Credentials.json", "r") as f:
+                credentials = json.load(f)
+            # Löschen des "cce" Eintrags
+            del credentials[values["-delAppName-"]]
+            # Schreiben des aktualisierten Dictionaries in die JSON-Datei
+            with open("Credentials.json", "w") as f:
+                json.dump(credentials, f, indent=4)
+        except KeyError:
+            if values["-delAppName-"] == "":
+                sg.popup("Bitte wählen Sie eine Applikation aus!", title="Hint", icon="hint.ico")
+            else:
+                sg.popup("Die App \"" + values["-delAppName-"] + "\" ist nicht in der JSON konfiguriert!", title="App not found", icon="error.ico")
+
+    if event == "-config-":
+        clearConfigWindow()
+        if values["-appName-"] in ["ivsr_client"]:
+            window["-headingInput1-"].update(visible=True)
+            window["-headingInput1-"].update("Client ID:\t\t")
+            window["-input1-"].update(visible=True)
+            window["-headingInput2-"].update(visible=True)
+            window["-headingInput2-"].update("Client Secret:\t")
+            window["-input2-"].update(visible=True)
+        if values["-appName-"] in ["cce", "vds"]:
+            window["-headingInput1-"].update(visible=True)
+            window["-headingInput1-"].update("Username:\t")
+            window["-input1-"].update(visible=True)
+            window["-headingInput2-"].update(visible=True)
+            window["-headingInput2-"].update("Password:\t")
+            window["-input2-"].update(visible=True)
+            window["-input2-"].update(password_char="*")
+            window["-checkpw-"].update(visible=True)
+            window["-checkpw-"].update(button_color=("white", "#7F7F7F"))
+            pwShow = False
 
 # Fenster schließen
 window.close()
