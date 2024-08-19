@@ -133,6 +133,8 @@ while True:
 
     if event == "-config-":
         clearConfigWindow()
+        if values["-appName-"] == "":
+            sg.popup("Bitte wählen Sie eine Applikation aus \nund konfigurieren Sie diese!", title="Hint", icon="hint.ico")
         if values["-appName-"] in ["ivsr_client"]:
             window["-headingInput1-"].update(visible=True)
             window["-headingInput1-"].update("Client ID:\t\t")

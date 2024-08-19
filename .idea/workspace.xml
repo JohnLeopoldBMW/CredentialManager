@@ -6,16 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3da95712-8156-48bf-84c1-474be7d3ff42" name="Changes" comment="Final clean up before presentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Credentials.json" beforeDir="false" afterPath="$PROJECT_DIR$/Credentials.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoginConfigurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoginConfigurator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/giphy.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/new.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/start.bat" beforeDir="false" afterPath="$PROJECT_DIR$/start.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/welcome.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,16 +33,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.LoginConfigurator.executor&quot;: &quot;Run&quot;,
-    &quot;Python.LoginConfigurator2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Playground.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/01_FG-790/CredentialManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.LoginConfigurator.executor": "Run",
+    "Python.LoginConfigurator2.executor": "Run",
+    "Python.Playground.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/01_FG-790/JSONCredentials"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
