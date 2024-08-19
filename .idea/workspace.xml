@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3da95712-8156-48bf-84c1-474be7d3ff42" name="Changes" comment="Cleanup after change to task">
-      <change afterPath="$PROJECT_DIR$/LoginConfigurator2.py" afterDir="false" />
+    <list default="true" id="3da95712-8156-48bf-84c1-474be7d3ff42" name="Changes" comment="Final clean up before presentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Credentials.json" beforeDir="false" afterPath="$PROJECT_DIR$/Credentials.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playground.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginConfigurator.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoginConfigurator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Team01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.json" beforeDir="false" afterPath="$PROJECT_DIR$/example.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/giphy.webp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/new.json" beforeDir="false" afterPath="$PROJECT_DIR$/new.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/start.bat" beforeDir="false" afterPath="$PROJECT_DIR$/start.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/welcome.txt" beforeDir="false" />
     </list>
@@ -99,13 +100,22 @@
       <option name="project" value="LOCAL" />
       <updated>1723549245683</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Final clean up before presentation">
+      <option name="closed" value="true" />
+      <created>1724069207558</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724069207558</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
     <MESSAGE value="init commit 2" />
     <MESSAGE value="Cleanup after change to task" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup after change to task" />
+    <MESSAGE value="Final clean up before presentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final clean up before presentation" />
   </component>
 </project>
