@@ -1,6 +1,5 @@
 import json
 from collections import OrderedDict
-
 import PySimpleGUI as sg
 
 # Add your new theme colors and settings
