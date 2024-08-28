@@ -28,10 +28,10 @@ with open("eye.png", "rb") as f:
 layout = [
     [sg.Text("Add user credentials to Config-File:", font="Arial 20")],
 
-    [sg.Text("Content Credentials.json:", font="Arial 12"), sg.Button("Delete entry:", key="-delEntryButton-", font="Arial 8", button_color="#AC1640", mouseover_colors="#d70000", pad=((95,0),(0,0))), sg.DropDown(("ivsr_client", "cce", "vds", "testApp"), key="-delAppName-", size=25)],
-    [sg.Multiline("<empty>",  key="-jsonText-", size=(75, 20), background_color="#BFBFBF", text_color="#012C38")],
+    [sg.Text("Content Credentials.json:", font="Arial 12"), sg.Button("Delete entry:", key="-delEntryButton-", font="Arial 8", button_color="#AC1640", mouseover_colors="#d70000", pad=((95,0),(0,0))), sg.DropDown(("ivsr_client", "cce", "vds", "testApp"), key="-delAppName-", font="Arial 12", size=(10, 5))],
+    [sg.Multiline("<empty>",  key="-jsonText-", size=(75, 20), background_color="#BFBFBF", text_color="#012C38", font="Arial 12")],
 
-    [sg.Text("Select Application:", font="Arial 14"), sg.DropDown(("ivsr_client", "cce", "vds"), key="-appName-", size=25, pad=((30,0),(0,0))), sg.Button("Configurate", key="-config-", font="Arial 13", mouseover_colors="#18C9F9", pad=((8,0),(0,0))), sg.Button("Add", key="-add-", font="Arial 13", mouseover_colors="#18C9F9", pad=((10,0),(0,0)))],
+    [sg.Text("Select Application:", font="Arial 14"), sg.DropDown(("ivsr_client", "cce", "vds"), key="-appName-", size=25, font="Arial 12"), sg.Button("Configurate", key="-config-", font="Arial 13", mouseover_colors="#18C9F9", pad=((8,0),(0,0))), sg.Button("Add", key="-add-", font="Arial 13", mouseover_colors="#18C9F9", pad=((25,0),(0,0)))],
 
 
     [sg.Text("", font="Arial 14", key="-headingInput1-", visible=False), sg.InputText(key="-input1-", font="Arial 14", text_color="#548D9E", size=27, pad=(10,0), visible=False)],
@@ -43,7 +43,7 @@ layout = [
 pwShow = False
 
 # Fenster erstellen
-window = sg.Window("Credential Manager", layout, icon="icon.ico", size=(620, 550))
+window = sg.Window("Credential Manager", layout, icon="icon.ico", size=(620, 580))
 
 def updateText():
     # Lesen der JSON-Datei in ein Dictionary
